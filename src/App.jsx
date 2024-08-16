@@ -22,7 +22,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Main />}></Route>
       <Route path="/favorite" element={<Favorite />}></Route>
-      <Route path="/detail:id" element={<Detail />}></Route>
+      <Route path="/detail/:id" element={<Detail />}></Route>
       <Route path="/search" element={<Search />}></Route>
     </Routes>
   );

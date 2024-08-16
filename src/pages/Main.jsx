@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPokemonById } from "../RTK/thunk";
+import { PokemonInfo } from "../components/pokemonInfo";
+import "../styles/Main.scss";
+import { fetchPokemonAllById } from "../RTK/fetchPokemonAllById";
 
 // 포켓몬 정보는 pokeapi,co에서 받아와서 표시하세요/
 // 다음 중 최소 2개의 페이지를 만드세요
@@ -16,31 +18,20 @@ import { fetchPokemonById } from "../RTK/thunk";
 
 const Main = () => {
   const dispatch = useDispatch();
-  const { data, loading } = useSelector((state) => state.pokemon);
+  const { data } = useSelector((state) => state.pokemonAll);
   const [page, setPage] = useState(1);
   const PER_PAGE = 5;
 
   useEffect(() => {
-    dispatch(fetchPokemonById(151));
+    dispatch(fetchPokemonAllById(151));
   }, []);
 
   return (
     <>
       {data
         ? data.slice(0, page * PER_PAGE).map((el) => (
-            <div key={el.id}>
-              <h2 className="pokemon__name">{el.name}</h2>
-              <p className="pokemon__des">{el.description}</p>
-              <img
-                className="pokemon__front"
-                src={el.front}
-                alt={el.name + ` 앞 이미지`}
-              />
-              <ul className="pokemon__type">
-                {el.type.map((type, idx) => (
-                  <li key={idx}>{type}</li>
-                ))}
-              </ul>
+            <div key={el.id} className="pokemon__">
+              <PokemonInfo el={el} />
             </div>
           ))
         : ""}
@@ -50,3 +41,22 @@ const Main = () => {
 };
 
 export default Main;
+
+// const pokemonDataList = () => {
+//   return (
+//     <div key={el.id}>
+//       <h2 className="pokemon__name">{el.name}</h2>
+//       <p className="pokemon__des">{el.description}</p>
+//       <img
+//         className="pokemon__front"
+//         src={el.front}
+//         alt={el.name + ` 앞 이미지`}
+//       />
+//       <ul className="pokemon__type">
+//         {el.types.map((type, idx) => (
+//           <li key={idx}>{type}</li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// };

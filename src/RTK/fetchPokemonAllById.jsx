@@ -4,7 +4,7 @@ import axios from "axios";
 // 생성한 데이터들을 전역에서 사용하기 위해서 RTK 사용
 // 사용하는 데이터의 타입이 비동기 처리가 필요함. => AsyncThunk()
 // reducers => 동기작업 // ExtraReducers => 비동기작업
-export const fetchPokemonById = createAsyncThunk(
+export const fetchPokemonAllById = createAsyncThunk(
   "pokemon/fetchPokemonById",
   async (maxPokemonId) => {
     // i + 1 을 해줘야함, 인덱스는 0부터 시작하고 API의 id값은 1부터 시작함.
@@ -34,7 +34,7 @@ export const fetchPokemonById = createAsyncThunk(
         ).flavor_text,
         front: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemonId}.png`,
         back: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${pokemonId}.png`,
-        type: dataForm.data.types.map((el) => el.type.name),
+        types: dataForm.data.types.map((el) => el.type.name),
       };
       return pokemonData;
     };
