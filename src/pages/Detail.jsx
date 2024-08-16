@@ -18,15 +18,15 @@ import { fetchPokemonSingleById } from "../RTK/fetchPokemonSingleById";
 
 const Detail = () => {
   const { id } = useParams();
-  const { data } = useSelector((state) => state.pokemonSingle);
+  const { data, loading } = useSelector((state) => state.pokemonSingle);
   const dispatch = useDispatch();
-
-  // 한번에 3번씩 리렌더가 발생함.
-  console.log(data);
 
   useEffect(() => {
     dispatch(fetchPokemonSingleById(id));
   }, [id]);
+
+  // 한번에 3번씩 리렌더가 발생함.
+  console.log(data);
 
   return (
     <>
