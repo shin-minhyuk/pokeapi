@@ -37,24 +37,18 @@ const Main = () => {
   const dispatch = useDispatch();
   const { data, loading } = useSelector((state) => state.pokemonAll);
   const [page, setPage] = useState(1);
-  const PER_PAGE = 6;
+  const PER_PAGE = 18;
 
   useEffect(() => {
     dispatch(fetchPokemonAllById(151));
-  }, []);
+  }, [dispatch]);
 
   if (loading) {
     return <Loading />;
   }
 
-  const onChange = () => {};
-
   return (
     <div className="main__container">
-      <label htmlFor="">
-        검색
-        <input type="text" onChange={onChange} />
-      </label>
       <div className="main__inner">
         {data
           ? data

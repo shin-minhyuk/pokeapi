@@ -1,15 +1,18 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Main from "./pages/Main";
 import Favorite from "./pages/Favorite";
 import Detail from "./pages/Detail";
 import Search from "./pages/Search";
+import { useEffect, useState } from "react";
 
 // 포켓몬 정보는 pokeapi,co에서 받아와서 표시하세요/
 // 다음 중 최소 2개의 페이지를 만드세요
 // main - 전체 포켓몬 리스트를 표시합니다
 // detail - 포켓몬 상세 정보를 표시합니다
+
 // favorite - 찜한 포켓몬 리스트를 표시합니다
+
 // search - 포켓몬 검색 결과 리스트를 표시합니다
 
 // RTK 전역상태관리 해보기
@@ -18,13 +21,38 @@ import Search from "./pages/Search";
 // 최소한의 css만 사용
 
 function App() {
+  const navigate = useNavigate();
+  const [value, setValue] = useState();
+
+  const onChange = (e) => {
+    const { value } = e.target;
+    setValue(value);
+
+    navigate(`/search?pokemon=${value}`);
+  };
+
+  // n초 동안 value의 값이 변경되지 않고 리렌더링이 발생하지 않으면 내부 함수 실행
+  // useEffect(() => {
+  //   const debounceId = setTimeout(() => {
+  //     navigate(`/search?pokemon=${value}`);
+  //   }, 1000);
+
+  //   return () => clearTimeout(debounceId);
+  // }, [value]);
+
   return (
-    <Routes>
-      <Route path="/" element={<Main />}></Route>
-      <Route path="/favorite" element={<Favorite />}></Route>
-      <Route path="/detail/:id" element={<Detail />}></Route>
-      <Route path="/search" element={<Search />}></Route>
-    </Routes>
+    <>
+      <label htmlFor="">
+        검색
+        <input type="text" name="search" onChange={onChange} />
+      </label>
+      <Routes>
+        <Route path="/" element={<Main />}></Route>
+        <Route path="/favorite" element={<Favorite />}></Route>
+        <Route path="/detail/:id" element={<Detail />}></Route>
+        <Route path="/search" element={<Search />}></Route>
+      </Routes>
+    </>
   );
 }
 

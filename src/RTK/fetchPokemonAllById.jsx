@@ -7,11 +7,8 @@ import axios from "axios";
 export const fetchPokemonAllById = createAsyncThunk(
   "pokemon/fetchPokemonById",
   async (maxPokemonId) => {
-    // i + 1 을 해줘야함, 인덱스는 0부터 시작하고 API의 id값은 1부터 시작함.
-    const dataArray = Array.from(
-      { length: maxPokemonId },
-      (notUseValue, i) => i + 1
-    );
+    // idx + 1 을 해줘야함, 인덱스는 0부터 시작하고 API의 id값은 1부터 시작함.
+    const dataArray = new Array(maxPokemonId).fill(0).map((_, idx) => idx + 1);
 
     const fetchAPI = async (pokemonId) => {
       // 포켓몬 데이터 API
