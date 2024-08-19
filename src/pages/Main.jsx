@@ -31,8 +31,8 @@ const StyledAddBtn = styled.button`
   &:hover {
     scale: calc(1.1);
     transition: 0.3s;
-    background-color: green;
-    color: white;
+    background-color: #fffb2b;
+    color: black;
   }
 `;
 

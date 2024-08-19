@@ -11,17 +11,21 @@ const CartContainer = styled.section`
   border-radius: 10px;
   gap: 10px;
   transition: 0.3s;
-  cursor: pointer;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
   &:hover {
     scale: calc(1.1);
     transition: 0.3s;
     box-shadow: 0 0 5px 0;
+    background-color: #fffb2b3e;
   }
 
   img {
     width: 120px;
+  }
+
+  div {
+    padding-bottom: 8px;
   }
 `;
 

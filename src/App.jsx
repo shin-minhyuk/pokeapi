@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPokemonById } from "./RTK/fetchPokemonAllById";
 import { Loading } from "./components/Loading";
+import styled from "styled-components";
 
 // 포켓몬 정보는 pokeapi,co에서 받아와서 표시하세요/
 // 다음 중 최소 2개의 페이지를 만드세요
@@ -22,6 +23,19 @@ import { Loading } from "./components/Loading";
 // 스타일링 도구 써보기, 최적화 진행하기
 // + 추가 기능구현
 // 최소한의 css만 사용
+
+const StyledDiv = styled.div`
+  background-color: transparent;
+  padding: 8px;
+  border: 1px solid #999999;
+  border-radius: 8px;
+
+  input {
+    background-color: transparent;
+    border-bottom: none;
+    padding-left: 12px;
+  }
+`;
 
 function App() {
   const [value, setValue] = useState();
@@ -45,18 +59,35 @@ function App() {
 
   return (
     <>
-      <h1 className="text-[40px] text-center">포켓몬 도감</h1>
-      <nav className="flex gap-[20px] justify-center">
-        <Link to={"/"}>메인</Link>
-        <Link to={"/favorite"}>찜목록</Link>
-        <div>
-          <input
-            type="text"
-            name="search"
-            onChange={onChange}
-            className="border-b border-[darkgray] px-2"
-          />
-          <span>🔎</span>
+      <nav className="bg-[#fffb2bff]  flex gap-[20px] items-center justify-between px-[36px] w-full">
+        <h1
+          onClick={() => navigate("/")}
+          className="text-[40px] text-center p-[12px] cursor-pointer"
+        >
+          포켓몬 도감
+        </h1>
+        <div className="flex gap-[20px] items-center">
+          <StyledDiv>
+            <span>🔎</span>
+            <input
+              type="text"
+              name="search"
+              onChange={onChange}
+              placeholder="Search"
+            />
+          </StyledDiv>
+          <Link
+            className="border border-[#999999] rounded-[8px] py-[8px] px-[12px]"
+            to={"/"}
+          >
+            메인
+          </Link>
+          <Link
+            className="border border-[#999999] rounded-[8px] py-[8px] px-[12px]"
+            to={"/favorite"}
+          >
+            찜목록
+          </Link>
         </div>
       </nav>
       <main className="w-full h-full flex justify-center">
