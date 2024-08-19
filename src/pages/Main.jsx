@@ -19,9 +19,8 @@ import styled from "styled-components";
 
 const StyledAddBtn = styled.button`
   position: fixed;
-  bottom: -10px;
+  bottom: 20px;
   padding: 10px;
-  margin-bottom: 40px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
   transition: 0.3s;
   border-radius: 8px;
@@ -45,10 +44,11 @@ export default function Main() {
   if (loading) {
     return <Loading />;
   }
+  console.log("렌더");
 
   return (
-    <div className="flex flex-col items-center gap-[20px]">
-      <div className="flex justify-center flex-wrap gap-[20px] pt-[20px]">
+    <div className="flex flex-col items-center h-full">
+      <div className="h-full flex justify-center flex-wrap m-[12px] gap-[20px] pt-[20px]">
         {data?.slice(0, page * PER_PAGE).map((el) => (
           <Card key={el.id} pokemon={el} />
         ))}

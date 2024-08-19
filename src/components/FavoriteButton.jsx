@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { favoriteSlice } from "../RTK/pokemonAllSlice";
+import { memo } from "react";
 
-export default function FavoriteButton({ pokemonId }) {
+const FavoriteButton = memo(({ pokemonId }) => {
   const favorite = useSelector((state) => state.favorite);
   const isFavorite = favorite.some((item) => item === pokemonId);
-  console.log(favorite);
-  console.log(isFavorite);
+  console.log("렌더");
 
   const dispatch = useDispatch();
 
@@ -16,7 +16,6 @@ export default function FavoriteButton({ pokemonId }) {
     if (isFavorite)
       dispatch(favoriteSlice.actions.removeFromFavorite({ pokemonId }));
     else dispatch(favoriteSlice.actions.addToFavorite({ pokemonId }));
-    console.log(isFavorite);
   };
 
   return (
@@ -29,4 +28,6 @@ export default function FavoriteButton({ pokemonId }) {
       </button>
     </>
   );
-}
+});
+
+export default FavoriteButton;

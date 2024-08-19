@@ -11,7 +11,6 @@ import { Card } from "../components/Card";
 
 const Favorite = () => {
   const filteredData = useSelector(selectFilteredData);
-  console.log(filteredData);
 
   return (
     <div>

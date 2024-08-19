@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import FavoriteButton from "./FavoriteButton";
+import { memo, useState } from "react";
 
 const CartContainer = styled.section`
   position: relative;
@@ -11,7 +12,6 @@ const CartContainer = styled.section`
   justify-content: flex-start;
   align-items: center;
   border-radius: 10px;
-  gap: 10px;
   transition: 0.3s;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border: 6px solid black;
@@ -23,11 +23,16 @@ const CartContainer = styled.section`
     box-shadow: 0 0 5px 0;
   }
 
-  img {
+  img,
+  span {
     position: absolute;
     top: 26px;
     z-index: 2;
     width: 96px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   div {
@@ -53,12 +58,20 @@ const CartContainer = styled.section`
   }
 `;
 
-export const Card = ({ pokemon }) => {
+export const Card = memo(({ pokemon }) => {
+  const [isLoadingImage, setIsLoadingImage] = useState(true);
   const navigate = useNavigate();
 
   return (
     <CartContainer onClick={() => navigate(`/detail/${pokemon.id}`)}>
-      <img src={pokemon.front} alt={pokemon.name} />
+      {isLoadingImage ? <span>로딩중...</span> : null}
+      <img
+        onLoad={() => setIsLoadingImage(false)}
+        style={{ display: isLoadingImage ? "none" : "block" }}
+        src={pokemon.front}
+        alt={pokemon.name}
+      />
+
       <p></p>
       <div>
         {pokemon.name}
@@ -66,4 +79,4 @@ export const Card = ({ pokemon }) => {
       </div>
     </CartContainer>
   );
-};
+});

@@ -1,14 +1,15 @@
 import "./App.scss";
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
-import Main from "./pages/Main";
-import Favorite from "./pages/Favorite";
-import Detail from "./pages/Detail";
-import Search from "./pages/Search";
-import { useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPokemonById } from "./RTK/fetchPokemonAllById";
 import { Loading } from "./components/Loading";
 import styled from "styled-components";
+
+const Main = lazy(() => import("./pages/Main"));
+const Detail = lazy(() => import("./pages/Detail"));
+const Favorite = lazy(() => import("./pages/Favorite"));
+const Search = lazy(() => import("./pages/Search"));
 
 // 포켓몬 정보는 pokeapi,co에서 받아와서 표시하세요/
 // 다음 중 최소 2개의 페이지를 만드세요
@@ -59,46 +60,48 @@ function App() {
 
   return (
     <>
-      <nav className="bg-[#fffb2bff]  flex gap-[20px] items-center justify-between px-[36px] w-full">
-        <h1
-          onClick={() => navigate("/")}
-          className="text-[40px] text-center p-[12px] cursor-pointer"
-        >
-          포켓몬 도감
-        </h1>
-        <div className="flex gap-[20px] items-center">
-          <StyledDiv>
-            <span>🔎</span>
-            <input
-              type="text"
-              name="search"
-              onChange={onChange}
-              placeholder="Search"
-            />
-          </StyledDiv>
-          <Link
-            className="border border-[#999999] rounded-[8px] py-[8px] px-[12px]"
-            to={"/"}
+      <Suspense fallback={<Loading />}>
+        <nav className="h-[86px] bg-[#fffb2bff]  flex gap-[20px] items-center justify-between px-[36px] w-full">
+          <h1
+            onClick={() => navigate("/")}
+            className="text-[40px] text-center p-[12px] cursor-pointer"
           >
-            메인
-          </Link>
-          <Link
-            className="border border-[#999999] rounded-[8px] py-[8px] px-[12px]"
-            to={"/favorite"}
-          >
-            찜목록
-          </Link>
-        </div>
-      </nav>
-      <div className="h-[36px] bg-white w-full border-t-2 border-black"></div>
-      <main className="w-full h-full flex justify-center">
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/favorite" element={<Favorite />} />
-          <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/search" element={<Search />} />
-        </Routes>
-      </main>
+            포켓몬 도감
+          </h1>
+          <div className="flex gap-[20px] items-center">
+            <StyledDiv>
+              <span>🔎</span>
+              <input
+                type="text"
+                name="search"
+                onChange={onChange}
+                placeholder="Search"
+              />
+            </StyledDiv>
+            <Link
+              className="border border-[#999999] rounded-[8px] py-[8px] px-[12px]"
+              to={"/"}
+            >
+              메인
+            </Link>
+            <Link
+              className="border border-[#999999] rounded-[8px] py-[8px] px-[12px]"
+              to={"/favorite"}
+            >
+              찜목록
+            </Link>
+          </div>
+        </nav>
+        <div className="h-[36px] bg-white w-full border-t-2 border-black"></div>
+        <main className="w-full h-full flex justify-center relative">
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/favorite" element={<Favorite />} />
+            <Route path="/detail/:id" element={<Detail />} />
+            <Route path="/search" element={<Search />} />
+          </Routes>
+        </main>
+      </Suspense>
     </>
   );
 }
