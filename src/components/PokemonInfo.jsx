@@ -10,13 +10,6 @@ export const PokemonInfo = ({ el }) => {
     setClicked((prev) => !prev);
   };
 
-  /**
-   * 버튼 클릭 시, 상태 업데이트, 데이터 post
-   * axios.post("asdas/asdasd/asd", {
-   *  bookmark
-   * })
-   */
-
   return (
     <div className="pokemonInfo__container">
       <Link to={`/detail/${el.id}`}>

@@ -1,5 +1,4 @@
 import PikaLoading from "../assets/PikaLoading.webp";
-import "../App.css";
 import styled from "styled-components";
 
 const StyledLoading = styled.div`

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fetchPokemonSingleById } from "./fetchPokemonSingleById";
 
 export const pokemonSingleSlice = createSlice({
-  name: "pokemon",
+  name: "pokemonSingle",
   initialState: {
     data: [],
     loading: true,
