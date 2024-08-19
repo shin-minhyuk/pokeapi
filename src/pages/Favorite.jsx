@@ -14,13 +14,13 @@ const Favorite = () => {
   console.log(filteredData);
 
   return (
-    <>
+    <div>
       <div className="flex justify-center flex-wrap gap-[20px] pt-[20px]">
         {filteredData.map((el) => (
           <Card key={el.id} pokemon={el} />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
