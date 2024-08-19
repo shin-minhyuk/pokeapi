@@ -4,17 +4,24 @@ import FavoriteButton from "./FavoriteButton";
 
 const CartContainer = styled.section`
   width: 150px;
-  border: 1px solid #999999;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
   gap: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    scale: calc(1.1);
+    transition: 0.3s;
+    box-shadow: 0 0 5px 0;
+  }
 
   img {
     width: 120px;
-    border: 1px solid red;
   }
 `;
 

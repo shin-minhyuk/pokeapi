@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { fetchPokemonById } from "./fetchPokemonAllById";
 
 export const pokemonSlice = createSlice({

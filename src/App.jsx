@@ -53,7 +53,7 @@ function App() {
           <span>🔎</span>
         </div>
       </nav>
-      <main className="flex justify-center flex-wrap gap-[20px] pt-[20px]">
+      <main>
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/favorite" element={<Favorite />} />

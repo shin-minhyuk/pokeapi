@@ -29,12 +29,10 @@ const Search = () => {
 
   return (
     <>
-      <div className="main__container">
-        <div className="main__inner">
-          {filteredData?.map((el) => (
-            <Card key={el.id} pokemon={el} />
-          ))}
-        </div>
+      <div className="flex justify-center flex-wrap gap-[20px] pt-[20px]">
+        {filteredData?.map((el) => (
+          <Card key={el.id} pokemon={el} />
+        ))}
       </div>
     </>
   );
