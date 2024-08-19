@@ -27,6 +27,7 @@ const StyledAddBtn = styled.button`
   border-radius: 8px;
   background-color: rgba(122, 122, 122, 0.7);
   color: white;
+  z-index: 3;
 
   &:hover {
     scale: calc(1.1);

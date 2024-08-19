@@ -33,13 +33,16 @@ export default function FlippedCard({ front, back }) {
 
   return (
     <>
-      <FlippedImgContainer
-        onClick={() => setFlipped((prev) => !prev)}
-        $flipped={flipped}
-      >
+      <FlippedImgContainer $flipped={flipped}>
         <FrontImg src={front} />
         <BackImg src={back} />
       </FlippedImgContainer>
+      <button
+        className="bg-[#fffb2bff] py-[8px] px-[12px] border border-[gray] rounded-[8px]"
+        onClick={() => setFlipped((prev) => !prev)}
+      >
+        뒤집기
+      </button>
     </>
   );
 }

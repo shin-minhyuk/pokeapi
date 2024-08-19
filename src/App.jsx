@@ -90,6 +90,7 @@ function App() {
           </Link>
         </div>
       </nav>
+      <div className="h-[36px] bg-white w-full border-t-2 border-black"></div>
       <main className="w-full h-full flex justify-center">
         <Routes>
           <Route path="/" element={<Main />} />

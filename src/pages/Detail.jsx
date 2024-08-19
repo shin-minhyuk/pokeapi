@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { selectPokemonById } from "../RTK/selector";
 import FlippedCard from "../components/FlippedCard";
 import { Loading } from "../components/Loading";
+import FavoriteButton from "../components/FavoriteButton";
 
 // RTK 전역상태관리 해보기
 // 스타일링 도구 써보기, 최적화 진행하기
@@ -29,14 +30,17 @@ const Detail = () => {
   console.log(data);
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="w-[300px] h-[400px] mt-[36px] flex flex-col justify-center items-center border border-[gray] p-[10px] rounded-[10px]">
-        <div className="text-[28px] font-[700] mb-[10px]">{data.name}</div>
+    <div className="flex flex-col items-center ">
+      <div className="bg-white shadow-xl border border-[#cbcbcb] w-[300px] h-[456px] mt-[36px] flex flex-col justify-center items-center  p-[10px] rounded-[10px]">
+        <div className="text-[28px] font-[700] mb-[10px]">
+          {data.name}
+          <FavoriteButton pokemonId={data.id} />
+        </div>
         <div className="whitespace-pre-wrap text-center">
           {data.description}
         </div>
         <FlippedCard front={data.front} back={data.back} />
-        <span className="font-[900]">속성</span>
+        <span className="font-[900] mt-4">속성</span>
         <ul className="flex gap-2">
           {data.types.map((el, idx) => (
             <li key={idx}>{el}</li>
