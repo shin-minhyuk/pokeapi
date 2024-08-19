@@ -18,17 +18,21 @@ import styled from "styled-components";
 // 최소한의 css만 사용
 
 const StyledAddBtn = styled.button`
+  position: fixed;
+  bottom: -10px;
   padding: 10px;
   margin-bottom: 40px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
   transition: 0.3s;
   border-radius: 8px;
-  background-color: green;
+  background-color: rgba(122, 122, 122, 0.7);
   color: white;
 
   &:hover {
     scale: calc(1.1);
     transition: 0.3s;
+    background-color: green;
+    color: white;
   }
 `;
 

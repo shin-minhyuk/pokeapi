@@ -29,7 +29,7 @@ const Detail = () => {
   console.log(data);
 
   return (
-    <div className="flex flex-col justify-center items-center border border-[gray] p-[10px] rounded-[10px]">
+    <div className="w-[300px] h-[400px] mt-[36px] flex flex-col justify-center items-center border border-[gray] p-[10px] rounded-[10px]">
       <div className="text-[28px] font-[700] mb-[10px]">{data.name}</div>
       <div className="whitespace-pre-wrap text-center">{data.description}</div>
       <FlippedCard front={data.front} back={data.back} />

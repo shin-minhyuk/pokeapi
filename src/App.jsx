@@ -7,6 +7,7 @@ import Search from "./pages/Search";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPokemonById } from "./RTK/fetchPokemonAllById";
+import { Loading } from "./components/Loading";
 
 // 포켓몬 정보는 pokeapi,co에서 받아와서 표시하세요/
 // 다음 중 최소 2개의 페이지를 만드세요
@@ -26,6 +27,7 @@ function App() {
   const [value, setValue] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.pokemon);
 
   const onChange = (e) => {
     const { value } = e.target;
@@ -36,6 +38,10 @@ function App() {
   useEffect(() => {
     dispatch(fetchPokemonById(151));
   }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -53,7 +59,7 @@ function App() {
           <span>🔎</span>
         </div>
       </nav>
-      <main>
+      <main className="w-full h-full flex justify-center">
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/favorite" element={<Favorite />} />

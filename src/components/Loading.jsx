@@ -2,6 +2,11 @@ import PikaLoading from "../assets/PikaLoading.webp";
 import styled from "styled-components";
 
 const StyledLoading = styled.div`
+  :root {
+    width: 100%;
+    height: 100%;
+  }
+
   display: flex;
   align-items: center;
   justify-content: center;
